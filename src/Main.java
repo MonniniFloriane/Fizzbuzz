@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
-        FizzBuzz(100);
+        fizzBuzz(100);
     }
 
     public static HashMap<Integer, String> getConfig() {
@@ -38,22 +38,26 @@ public class Main {
         return value % modulo == 0;
     }
 
-    public static void FizzBuzz(int n) {
+    public static String fizzBuzzStringBuilder(HashMap<Integer, String> config, int value) {
+        StringBuilder result = new StringBuilder();
+
+        for (Integer key : config.keySet()) {
+            if (isDivisible(value, key)) {
+                result.append(config.get(key));
+            }
+        }
+        if (result.isEmpty()) {
+            result.append(value);
+        }
+
+        return result.toString();
+    }
+
+    public static void fizzBuzz(int n) {
         HashMap<Integer, String> config = getConfig();
 
         for (int i = 1; i <= n; i++) {
-            StringBuilder s = new StringBuilder();
-
-            for (Integer key : config.keySet()) {
-                if (isDivisible(i, key)) {
-                    s.append(config.get(key));
-                }
-            } if (s.isEmpty()) {
-                s.append(String.valueOf(i));
-            }
-
-            System.out.println(s);
-
+            System.out.println(fizzBuzzStringBuilder(config, i));
         }
     }
 }
