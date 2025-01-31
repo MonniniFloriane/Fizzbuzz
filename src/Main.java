@@ -18,24 +18,38 @@ Qualité du code
 Évolutivité de l'algorithme
 Utilisation de bonnes pratiques et de fonctionnalités de langage de programmation moderne*/
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
         FizzBuzz(100);
     }
 
+    public static HashMap<Integer, String> getConfig() {
+        HashMap<Integer, String> result = new HashMap<Integer, String>();
+
+        result.put(3, "Fizz");
+        result.put(5, "Buzz");
+
+        return result;
+        }
+
     public static void FizzBuzz(int n) {
+        HashMap<Integer, String> config = getConfig();
+
         for (int i = 1; i <= n; i++) {
-            String s = "";
-            if (i % 3 == 0) {
-                s += "Fizz";
-            } if (i % 5 == 0) {
-                s += "Buzz";
+            StringBuilder s = new StringBuilder();
+
+            for (Integer key : config.keySet()) {
+                if (i % key == 0) {
+                    s.append(config.get(key));
+                }
             } if (s.isEmpty()) {
-                s = String.valueOf(i);
+                s.append(String.valueOf(i));
             }
+
             System.out.println(s);
+
         }
     }
 }
