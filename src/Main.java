@@ -32,7 +32,11 @@ public class Main {
         result.put(5, "Buzz");
 
         return result;
-        }
+    }
+
+    public static boolean isDivisible(int value, int modulo) {
+        return value % modulo == 0;
+    }
 
     public static void FizzBuzz(int n) {
         HashMap<Integer, String> config = getConfig();
@@ -41,7 +45,7 @@ public class Main {
             StringBuilder s = new StringBuilder();
 
             for (Integer key : config.keySet()) {
-                if (i % key == 0) {
+                if (isDivisible(i, key)) {
                     s.append(config.get(key));
                 }
             } if (s.isEmpty()) {
